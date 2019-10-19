@@ -7,13 +7,13 @@ Workshop: Docker 101 - Nerdearla | Buenos Aires
 Build de docker
 
 ```sh
-docker build -t wwcodeba-docker .
+docker build -t nerdearla-docker .
 ```
 
 Correr el container
 
 ```sh
-docker run -p 3000:3000 wwcodeba-docker
+docker run -p 3000:3000 nerdearla-docker
 ```
 
 ### Entorno de producción
@@ -21,11 +21,11 @@ docker run -p 3000:3000 wwcodeba-docker
 Build de docker
 
 ```sh
-docker build -f Dockerfile-prod -t wwcodeba-docker .
+docker build -f Dockerfile-prod -t nerdearla-docker .
 ```
 
 Correr el container
 
 ```sh
-docker run -p 5000:5000 wwcodeba-docker
+docker run -p 5000:5000 nerdearla-docker
 ```
