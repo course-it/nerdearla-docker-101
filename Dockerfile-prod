@@ -1,0 +1,28 @@
+#Instalamos la imagen de NodeJS 10.16 en el container
+FROM node:10.16-alpine
+
+#Establecemos app como directorio a correr nuestra app
+WORKDIR /app
+
+#Copiar antes el package.json es una estrategia para solo instalar los paquetes
+#si cambió algo en el container
+COPY ["package.json", "package-lock.json*", "./"]
+
+#Instalamos todos los paquetes de NodeJS
+RUN npm install --silent
+
+#Copiamos todo el directorio de nuestra app adentro del container
+COPY . .
+
+#Hacemos el build de nuestra app, esto nos va a crear una carpeta /build con
+#todos los archivos minificados y optimizados para correr en producción
+RUN npm run build
+
+#Instalamos serve (Es un paquete de npm para crear un servidor en base a un directorio)
+RUN npm install -g serve
+
+#serve trabaja por default en el puerto 5000, así que exponemos ese
+EXPOSE 5000
+
+#Corremos el comando serve y el segundo parametro es el directorio que creamos con el build
+CMD ["serve", "build"]
